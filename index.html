@@ -1,95 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title></title>
 </head>
-
 <body ng-app="MonApp">
-
+    
     <div ng-view></div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
-
-    <script>
-
-        var app = angular.module('MonApp', ['ngRoute']);
-        app.config(function ($routeProvider) {
-            $routeProvider
-                .when('/', { templateUrl: 'partials/home.html', controller: 'PostCtrl' })
-                .when('/comments/:id', { templateUrl: 'partials/comments.html', controller: 'CommentsCtrl' })
-                .otherwise({ redirectTo: '/' });
-
-        });
-
-        app.factory('Post', function ($http, $q, $timeout) {
-
-            var factory = {
-                posts : false,
-                getPosts: function () {
-                    var deferred = $q.defer();
-                    if (factory.posts !== false) {
-                        deferred.resolve(factory.posts);
-                    } else {
-                        $http.get('posts.json')
-                            .success(function (data, status) {
-                                factory.posts = data;
-                                $timeout(function () {
-                                    deferred.resolve(factory.posts);
-                                }, 2000)
-                            }).error(function (data, status) {
-                                deferred.reject('Impossible de récupérer les articles');
-                            });
-
-                    }
-                    return deferred.promise;
-                },
-                getPost: function (id) {
-                    var deferred = $q.defer();
-                    var post = {};
-                    var posts = factory.getPosts().then(function (posts) {
-                        angular.forEach(posts, function (value, key) {
-                            if (value.id == id) {
-                                post = value
-                            }
-                        });
-                        deferred.resolve(post);
-                    }, function (msg) {
-                        deferred.reject(msg);
-                    })
-                    return post;
-
-                }
-            };
-            return factory;
-        })
-
-        app.controller('PostCtrl', function ($scope, Post) {
-            $scope.loading = true;
-            $scope.posts = Post.getPosts().then(function (posts) {
-                $scope.loading = false;
-                $scope.posts = posts;
-            }, function (msg) {
-                alert(msg);
-            });
-
-        })
-
-        app.controller('CommentsCtrl', function ($scope, Post, $routeParams) {
-            $scope.loading = true;
-            var post = PostFactory.getPost($routeParams.id).then(function (post) {
-                $scope.loading = false;
-                $scope.title = post.name;
-                $scope.comments = post.comments;
-
-            }, function (msg) {
-                alert(msg);
-            })
-
-        });
-
-    </script>
+    <script src="js/app.js"></script>
+    <script src="js/service/post.js"></script>
+    <script src="js/controller/comments.js"></script>
+    <script src="js/controller/posts.js"></script>
 </body>
-
 </html>
