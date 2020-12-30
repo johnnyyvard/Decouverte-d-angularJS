@@ -1,9 +1,26 @@
-<a href="#/">Revenir aux articles</a>
+<ul class="breadcrump">
+    <a href="#/">Revenir aux articles</a>
+    <li class="active">{{post.name}} </li>
+</ul>
+
 <div ng-hide="loading">
-    <h1>Commentaires {{ date }}</h1>
-    <p>
-        {{ chiffre }}
-    </p>
+
+    <h1>{{post.name}} </h1>
+
+    <p>{{post.content}} </p>
+
+    <h3>{{comments.length}} Commentaires</h3>
+    
+    <div ng-repeat="comment in comments | filter:{content: query} | orderBy:order">
+        <p>
+            <strong>{{comment.username}} </strong><br>
+            {{comment.content}}
+        </p>
+        <hr>
+    </div>
+
+    <hr>
+
     <form ng-submit="addComment()">
         <input type="text" placeholder="username" ng-model="newComment.username" /><br>
         <input type="text" placeholder="city" ng-model="newComment.city" /><br>
