@@ -11,13 +11,11 @@
 
     <h3>{{comments.length}} Commentaires</h3>
     
-    <div ng-repeat="comment in comments | filter:{content: query} | orderBy:order">
-        <p>
-            <strong>{{comment.username}} </strong><br>
-            {{comment.content}}
-        </p>
-        <hr>
+    <div ng-repeat="comment2 in comments | filter:{content: query} | orderBy:order">
+        <ng-comment comment="comment2" select="selectComment()"></ng-comment>
     </div>
+
+    <time></time>
 
     <hr>
 
