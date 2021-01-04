@@ -10,20 +10,30 @@
     <p>{{post.content}} </p>
 
     <h3>{{comments.length}} Commentaires</h3>
-    
-    <div ng-repeat="comment2 in comments | filter:{content: query} | orderBy:order">
-        <ng-comment comment="comment2" select="selectComment()"></ng-comment>
-    </div>
 
-    <time></time>
+    <div ng-test username="newComment.username">
+        <div ng-repeat="comment in comments | filter:{content: query} | orderBy:order">
+            <ng-comment comment="comment"></ng-comment>
+        </div>
+
+    </div>
 
     <hr>
 
     <form ng-submit="addComment()">
-        <input type="text" placeholder="username" ng-model="newComment.username" /><br>
-        <input type="text" placeholder="city" ng-model="newComment.city" /><br>
-        <input type="text" placeholder="email" ng-model="newComment.email" /><br>
-        <textarea ng-model="newComment.content"></textarea>
+        <h3>Ajouter un commentaire</h3>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="username" ng-model="newComment.username" /><br>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="city" ng-model="newComment.city" /><br>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="email" ng-model="newComment.email" /><br>
+        </div>
+        <div class="form-group">
+            <textarea ng-model="newComment.content"></textarea>
+        </div>
         <input type="submit" value="Envoyer">
     </form>
 </div>

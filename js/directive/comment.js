@@ -6,12 +6,16 @@ app.directive('ngComment', function () {
         restrict: 'E',
         templateUrl: 'partials/_comment.html'
     }
-})
+});
 
-app.directive('time', function () {
-    return {
-        restrict: 'E',
-        template: '{{time}}',
-        scope: {},
+app.directive('ngTest', function(){
+    return{
+        template : '<div>Salut<strong>{{username}}{{comments}}</strong><div ng-transclude></div></div>',
+        restrict : 'A',
+        transclude : true,
+        scope : {
+            comments : '@username',
+            username : '='
+        }
     }
 })
