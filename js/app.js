@@ -1,7 +1,8 @@
-var app = angular.module('MonApp', ['ngRoute']);
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when('/', { templateUrl: 'partials/home.html', controller: 'PostCtrl' })
-        .when('/comments/:id', { templateUrl: 'partials/comments.html', controller: 'CommentsCtrl' })
-        .otherwise({ redirectTo: '/' });
+var app = angular.module('MonApp', ['ngResource'] );
+
+app.controller('PostsCtrl', function($scope, $resource){
+
+    var Post = $resource('/posts/:id.json');
+    posts = Post.query();
+
 });

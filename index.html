@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Mon exemple angularJS</title>
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -16,16 +17,11 @@
         </div>
     </div>
 
-    <div class="container" ng-view></div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.2.14/angular-route.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <div class="container" ng-controller="PostsCtrl"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.8.2/angular-resource.min.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/service/post.js"></script>
-    <script src="js/controller/comments.js"></script>
-    <script src="js/controller/posts.js"></script>
-    <script src="js/directive/directive.js"></script>
 </body>
 
 </html>
