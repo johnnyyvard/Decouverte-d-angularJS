@@ -1,0 +1,47 @@
+<ul class="breadcrump">
+    <a href="#/">Revenir aux articles</a>
+    <li class="active">{{post.name}} </li>
+</ul>
+
+<div ng-hide="loading">
+
+    <ng-tabs>
+
+        <ng-tab title="Article">
+
+            <h1>{{post.name}} </h1>
+
+            <p>{{post.content}} </p>
+
+        </ng-tab>
+
+        <ng-tab title="{{comments.length}} Commentaires">
+            <h3>{{comments.length}} Commentaires</h3>
+
+            <div ng-repeat="comment in comments | filter:{content: query} | orderBy:order">
+                <ng-comment comment="comment"></ng-comment>
+            </div>
+
+        </ng-tab>
+
+    </ng-tabs>
+
+    <hr>
+
+    <form ng-submit="addComment()">
+        <h3>Ajouter un commentaire</h3>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="username" ng-model="newComment.username" /><br>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="city" ng-model="newComment.city" /><br>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="email" ng-model="newComment.email" /><br>
+        </div>
+        <div class="form-group">
+            <textarea ng-model="newComment.content"></textarea>
+        </div>
+        <input type="submit" value="Envoyer">
+    </form>
+</div>
